@@ -1,0 +1,20 @@
+<div class="campaign-tile">
+  <h2 class="text-center candidate-name"><a href="#campaign/{{pac.filer_id}}">{{pac.candidate_name | convertCase}}</a></h2>
+  <div class="text-center race"> {{pac.race}} </div>
+  <div class="portrait col-xs-2 col-xs-offset-2 col-sm-offset-0">
+    <img src="images/icons/genderless.svg" />
+  </div>
+
+
+  <div class="col-xs-2"> {{pac.party}} </div>
+
+  <div class="row">
+    <div ng-class="{'party-{{pac.party | lowercase}}': true }" class="party col-xs-2"></div>
+  </div>
+  <div class="total">{{pac.total | currencyFormat}}</div>
+  <div>Total Money Raised</div>
+  <h5>Funding Sources</h5>
+  <radial percent="pac.grassroots" class="funding-icons" title="Grassroots Funding" icon="grassroots"></radial>
+  <radial percent="pac.instate" class="funding-icons" title="In-District Funding" icon="district"></radial>
+  <!--div simple-radial percent="campaign.spent_percent" class="funding-icons" title="Spent" icon="money" color="#48a04b"></div-->
+</div>

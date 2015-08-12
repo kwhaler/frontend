@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "OpenSansLight";
+  src: url("/fonts/open-sans/OpenSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "OpenSansBold";
+  src: url("/fonts/open-sans/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "OpenSansRegular";
+  src: url("/fonts/open-sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "MerriweatherLight";
+  src: url("/fonts/merriweather/Merriweather-Light.otf");
+}
+
+@font-face {
+  font-family: "socicon";
+  src: url("/fonts/socicons/socicon-webfont.ttf");
+}
+
+@import "./_base.styl";
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'OpenSansLight';
+}
+
+.content {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -12em;
+  padding-top: 70px;
+
+  .jumbotron.minified {
+    transition: padding-top 1s, padding-bottom 1s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  /** Home Page ================================================= **/
+  .home {
+    .header {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+      padding: 0 15px 15px 15px;
+      border-bottom: 5px solid black;
+      width: 70%;
+    }
+
+    .sticker {
+      position: absolute;
+      right: 0px;
+      top: -55px;
+    }
+
+  }
+}
+
+h1 {
+  font-family: $headlineFont;
+  font-weight: 100;
+}
+h3 {
+  font-family: OpenSansLight;
+  font-weight: 100;
+  text-align: center;
+  letter-spacing: 3px;
+}

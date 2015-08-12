@@ -1,0 +1,33 @@
+<div class="container results">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="text-center search">Search Campaigns</h1>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="row search-box">
+        <form ng-submit="onSubmit()">
+          <div class="hidden-xs col-sm-1 icon search icon-{{viewModel.searchType}}"></div>
+          <div class="col-xs-9 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+            <input type="text" class="form-control" placeholder="Candidate, Measure, or PAC Name" ng-model="viewModel.searchTerm" />
+            <img class="bg-search-icon" src="images/icons/search.svg" />
+          </div>
+          <div class="col-xs-1">
+            <div class="btn icon-arrow" ng-click="onSubmit()"></div>
+          </div>
+        </form>
+      </div>
+  </div>
+
+  <div class="row">
+    <span ng-repeat="(index, pac) in viewModel.pacs">
+      <div class="col-xs-12 col-sm-6 col-md-4" >
+        <pac-tile pac="pac"></pac-tile>
+      </div>
+      <br ng-show="(index+1)%3==0" />
+    </span>
+  </div>
+
+</div>

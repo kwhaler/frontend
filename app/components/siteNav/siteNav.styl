@@ -1,0 +1,57 @@
+@import "../_base.styl";
+
+.navbar {
+  background-color: $primary-white;
+  font-size: 2em;
+  border: none;
+  min-height: 75px;
+
+  &.navbar-fixed-top {
+    left: clear;
+  }
+
+  .tiny-logo {
+    width: 250px;
+  }
+
+
+  .navbar-header {
+    float: right;
+    margin-right: 0px;
+  }
+
+  .selected {
+    font-family: OpenSansBold;
+
+    div {
+      border-bottom: 6px solid black;
+    }
+  }
+
+  .navbar-nav {
+      li {
+        padding-top: 5px;
+
+        div {
+          display: inline;
+
+          padding-bottom: 5%;
+          margin-right: 20px;
+          margin-top: 15px;
+
+          &:active, &:hover {
+              a {
+                color: $darkGray;
+              }
+          }
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            &:active, &:hover {
+                text-decoration: none;
+            }
+          }
+      }
+  }
+}
