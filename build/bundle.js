@@ -16,11 +16,9 @@ gulp.task('build:dev', ['webpack:dev'], function() {
 
 gulp.task('webpack:dev', function(callback) {
 
-  // modify some webpack config options
-  var devConfig = Object.create(webpackConfig);
-  devConfig.devtool = 'sourcemap';
-  devConfig.debug = true;
+  webpackConfig.devtool = 'sourcemap';
+  webpackConfig.debug = true;
   return gulp.src('./app/app.js')
-    .pipe(webpack(devConfig))
+    .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('./dist'));
 });
