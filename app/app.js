@@ -12,6 +12,7 @@ import Search from './components/search/Search';
 import PacTile from './components/pac/tile/PacTile';
 import PacDetail from './components/pac/detail/PacDetail';
 import Radial from './components/radial/Radial';
+import Sankey from './components/sankey/Sankey';
 
 import PacService from './services/PacService';
 
@@ -41,5 +42,6 @@ register('app')
   .directive('pacTile', PacTile)
   .directive('radial', Radial)
   .directive('pacDetail', PacDetail)
+  .directive('sankey', Sankey)
 
   .factory('PacService', PacService);

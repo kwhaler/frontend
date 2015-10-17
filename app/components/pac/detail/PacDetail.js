@@ -13,8 +13,9 @@ class PacDetail {
     this.PacService = PacService;
   }
 
-  controller($scope){
-
+  /*@ngInject*/
+  controller($scope, $routeParams, PacService){
+    console.log('pac detail');
     $scope.pacId = $routeParams.pacId;
 
     var startDate = new Date(2010, 1, 1).getTime();
@@ -32,7 +33,7 @@ class PacDetail {
       fundingExpenditures: null
     };
 
-    PacService.getPac($routeParams.pacId).then(function(result) {
+    PacService.getPac($scope.pacId).then(function(result) {
 
       $scope.viewModel.pac = result;
       $scope.photo = ($scope.viewModel.pac.photo || $scope.defaults.photo);

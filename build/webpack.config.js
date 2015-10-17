@@ -19,9 +19,9 @@ module.exports = {
         { test: /\.css$/, loader: 'style!css' },
         { test: /\.woff$/,   loader: "url-loader?limit=10000&mimetype=application/font-woff" },
         { test: /\.woff2$/,   loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-        { test: /\.ttf$/,    loader: "file-loader" },
-        { test: /\.eot$/,    loader: "file-loader" },
-        { test: /\.svg$/,    loader: "file-loader" },
+        { test: /\.ttf$/,    loader: "url-loader" },
+        { test: /\.eot$/,    loader: "url-loader" },
+        { test: /\.svg$/,    loader: "url-loader" },
         // **IMPORTANT** This is needed so that each bootstrap js file required by
         // bootstrap-webpack has access to the jQuery object
         { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' }

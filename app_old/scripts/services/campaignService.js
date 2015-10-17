@@ -233,7 +233,7 @@
 
       var sortEntry = function(a, b) {
         return Number(b.amount) - Number(a.amount);
-      }
+      };
 
       var self = this;
 
