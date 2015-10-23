@@ -6,9 +6,9 @@ angular.module('frontendApp').controller('NavCtrl', function($scope, $location, 
     $scope.site = {
         area: SITE.BALLOT
     }
-    $scope.atHome = function() {
-        return ($location.path() === '/');
-    }
+    // $scope.atHome = function() {
+    //     return ($location.path() === '/');
+    // }
     $scope.checkFor = function(loc) {
         return {
             selected: (loc === $scope.site.area)

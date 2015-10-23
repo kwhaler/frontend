@@ -23,6 +23,6 @@
       'CANDIDATE': 'candidate',
       'PARTY': 'party',
       'ADDRESS': 'address'
-    });;
+    });
 
 }());

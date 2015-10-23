@@ -1,0 +1,160 @@
+// Beyond the Curtain Styles
+.navbar-default {
+	background: #64BCBB;
+}
+.navbar-brand,
+.navbar-nav > li > a {
+  color: #fff !important;
+}
+.jumbotron {
+	text-align: center;
+	.container {
+		min-height:300px;
+		position: relative;
+	}
+}
+.highlights {
+	div {
+		text-align: center;
+	}
+}
+.section {
+	text-align: center;
+}
+.browse-mods > div {
+	border: solid 1px #ccc;
+	text-align: center;
+}
+
+.chart {
+	background: #ffc;
+	display: block;
+	position: relative;
+}
+
+.breadcrumb {
+	margin-left:0;
+}
+
+body {
+	margin-top: 75px;
+}
+.hero {
+	text-align: center;
+	padding-top:125px;
+}
+.veil-section {
+	height: 400px;
+	color: #fff;
+	background: #ccc url(../images/SenateCarpet.jpg) repeat fixed;
+}
+.row {
+	margin: 15px auto;
+}
+.mods {
+	margin:25px auto;
+	a {
+		display: block;
+		border: solid 1px #ccc;
+		text-align: center;
+		border-radius: 3px;
+		padding: 25px 5px;
+	}
+	.h3 {
+		display: block;
+		text-transform: uppercase;
+	}
+}
+
+// Viz
+
+// #chart {
+//   height: 500px;
+//   font: 13px sans-serif;
+// }
+// .node rect {
+//   fill-opacity: .9;
+//   shape-rendering: crispEdges;
+//   stroke-width: 0;
+// }
+// .node text {
+//   text-shadow: 0 1px 0 #fff;
+// }
+// .link {
+//   fill: none;
+//   stroke: #000;
+//   stroke-opacity: .2;
+// }
+
+// footer
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+// D3
+
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none !important;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+
+
+.counties {
+  fill: none;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.q0-9 { fill:rgb(247,251,255); }
+.q1-9 { fill:rgb(222,235,247); }
+.q2-9 { fill:rgb(198,219,239); }
+.q3-9 { fill:rgb(158,202,225); }
+.q4-9 { fill:rgb(107,174,214); }
+.q5-9 { fill:rgb(66,146,198); }
+.q6-9 { fill:rgb(33,113,181); }
+.q7-9 { fill:rgb(8,81,156); }
+.q8-9 { fill:rgb(8,48,107); }
+
+.search-results {
+	margin-left: 0;
+	li {
+		margin-bottom: 18px;
+	}
+	a {
+		color: #666;
+	}
+}
