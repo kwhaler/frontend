@@ -5,220 +5,104 @@
       <p>New Accounts Opened</p>
     </div> -->
     <div class="col-md-4">
-      <h3>$999</h3>
-      <p>New Expenditures</p>
+      <div class="alert alert-danger">
+        <h3>$999 <i class="glyphicon glyphicon-arrow-up"></i></h3>
+        <p>New Expenditures</p>
+      </div>
     </div>
     <div class="col-md-4">
-      <h3>$9999</h3>
-      <p>New Contributions</p>
+      <div class="alert alert-warning">
+        <h3>$9999 <i class="glyphicon glyphicon-arrow-down"></i></h3>
+        <p>New Contributions</p>
+      </div>
     </div>
     <div class="col-md-4">
-      <h3>$2.3MM</h3>
-      <p>PAC to PAC TRANSFERS</p>
+      <div class="alert alert-success">
+        <h3>$2.3MM <i class="glyphicon glyphicon-arrow-down"></i></h3>
+        <p>PAC to PAC TRANSFERS</p>
+      </div>
     </div> 
   </div>
 </div>
-<script>
-  // $(document).ready(function(){
-  // // Cache the Window object
-  //  $window = $(window);
-                  
-  //    $('div[data-type="parallax"]').each(function(){
-  //      var $bgobj = $(this);
-  //       $(window).scroll(function() {                
-  //        var yPos = -($window.scrollTop() / $bgobj.data('speed')); 
-  //        var coords = '50% '+ yPos + 'px';
-  //        $bgobj.css({ backgroundPosition: coords });
-  //        });
- //       }); 
-  //  }); 
-</script>
-<!-- <div class="parallax-container">
-  <div class="veil-bg"  data-type="parallax" data-speed="10">
-    <div class="veil-section"></div>
-  </div>
-  <div class="capital-bg"  data-type="parallax" data-speed="10">
-    <div class="capital-section"></div>
-  </div>
-</div> -->
+
 <div class="veil-section">
   <div class="container hero">
     <h1>Demystify Oregon Political Funding</h1>
     <br>
-    <div class="input-group">
-      <input type="text" class="form-control input-lg" placeholder="Search for Measures, Donors, Candidates">
-      <span class="input-group-btn">
-        <button class="btn btn-default btn-lg" type="button"><i class="glyphicon glyphicon-search"></i></button>
-      </span>
+    <search-box search-type="{{viewModel.searchType}}" prompt="Candidate, Measure, or PAC Name" search-term="{{viewModel.searchTerm}}" ></search-box>
+    <div ng-repeat="(index, campaign) in viewModel.campaigns">
+      <campaign-tile campaign="campaign"></campaign-tile>
     </div>
-    <br>
-    <p><a href="{{ site.baseurl }}/search/">Show Advanced Options</a></p>
+    <p><a href="#search" style="color:#fff;">Advanced Options &rarr;</a></p>
   </div>
 </div>
 
-  <div class="container">
-    <div class="row section">
-      <div class="col-md-12">
-        <h2>Browse</h2>
-        <p>If you are not sure what to look for consider browsing the following categories</p>
-      </div>
+<div class="container">
+  <div class="row section">
+    <div class="col-md-12">
+      <h2>Browse</h2>
+      <p>If you are not sure what to look for consider browsing the following categories</p>
     </div>
-    <div class="row mods">
-      <div class="col-md-3">
-        <a href="{{ site.baseurl }}/oregon/">
-          <span class="h3">Oregon</span>
-          <span>State summary</span>
-        </a>
-      </div>
-      <div class="col-md-3">
-        <a href="{{ site.baseurl }}/measures/">
-          <span class="h3">Measures</span>
-          <span>Initiatives, Referendums, Referrals</span>
-        </a>
-      </div>
-      <div class="col-md-3">
-        <a href="{{ site.baseurl }}/donors/">
-          <span class="h3">Donors</span>
-          <span>Corporations, PACs, Individuals</span>
-        </a>
-      </div>
-      <div class="col-md-3">
-        <a href="{{ site.baseurl }}/candidates/">
-          <span class="h3">Candidates</span>
-          <span>All Parties</span>
-        </a>
-      </div>
-    </div> 
   </div>
+  <div class="row mods">
+    <div class="col-md-3">
+      <a href="#oregon">
+        <span class="h3">Oregon</span>
+        <span>State summary</span>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="#measures">
+        <span class="h3">Measures</span>
+        <span>Initiatives, Referendums, Referrals</span>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="#donors">
+        <span class="h3">Donors</span>
+        <span>Corporations, PACs, Individuals</span>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="#candidates">
+        <span class="h3">Candidates</span>
+        <span>All Parties</span>
+      </a>
+    </div>
+  </div> 
+</div>
 
 <div class="container">
   <div class="row">
     <h3 style="text-align:center">Oregon State</h3>
     <div class="col-md-12">
-      <div id="money-map"></div>
-      <script>
-
-        function makeMap() {
-
-          //Width and height
-          var w = 1000;
-          var h = 400;
-
-          //Define map projection
-          var projection = d3.geo.albersUsa()
-                       .translate([w/2, h/2])
-                       .scale([700]);
-
-          //Define path generator
-          var path = d3.geo.path()
-                   .projection(projection);
-                   
-          //Define quantize scale to sort data values into buckets of color
-          var color = d3.scale.quantize()
-                    .range(["rgb(237,248,233)","rgb(186,228,179)","rgb(116,196,118)","rgb(49,163,84)","rgb(0,109,44)"]);
-                    //Colors taken from colorbrewer.js, included in the D3 download
-
-          //Create SVG element
-          var svg = d3.select("#money-map")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
-
-          //Load in agriculture data
-          d3.csv("{{ site.baseurl }}/data/us-ag-productivity-2004.csv", function(data) {
-
-            //Set input domain for color scale
-            color.domain([
-              d3.min(data, function(d) { return d.value; }), 
-              d3.max(data, function(d) { return d.value; })
-            ]);
-
-            //Load in GeoJSON data
-            d3.json("{{ site.baseurl }}/data/us-states.json", function(json) {
-
-              //Merge the ag. data and GeoJSON
-              //Loop through once for each ag. data value
-              for (var i = 0; i < data.length; i++) {
-            
-                var dataState = data[i].state;        //Grab state name
-                var dataValue = parseFloat(data[i].value);  //Grab data value, and convert from string to float
-            
-                //Find the corresponding state inside the GeoJSON
-                for (var j = 0; j < json.features.length; j++) {
-                
-                  var jsonState = json.features[j].properties.name;
-            
-                  if (dataState == jsonState) {
-                
-                    //Copy the data value into the JSON
-                    json.features[j].properties.value = dataValue;
-                    
-                    //Stop looking through the JSON
-                    break;
-                    
-                  }
-                }   
-              }
-
-              //Bind data and create one path per GeoJSON feature
-              svg.selectAll("path")
-                 .data(json.features)
-                 .enter()
-                 .append("path")
-                 .attr("d", path)
-                 .style("fill", function(d) {
-                    //Get data value
-                    var value = d.properties.value;
-                    
-                    if (value) {
-                      //If value exists…
-                      return color(value);
-                    } else {
-                      //If value is undefined…
-                      return "#ccc";
-                    }
-                 });
-
-              //Load in cities data
-              d3.csv("{{ site.baseurl }}/data/us-cities.csv", function(data) {
-                
-                svg.selectAll("circle")
-                   .data(data)
-                   .enter()
-                   .append("circle")
-                   .attr("cx", function(d) {
-                     return projection([d.lon, d.lat])[0];
-                   })
-                   .attr("cy", function(d) {
-                     return projection([d.lon, d.lat])[1];
-                   })
-                   .attr("r", function(d) {
-                    return Math.sqrt(parseInt(d.population) * 0.00004);
-                   })
-                   .style("fill", "yellow")
-                   .style("opacity", 0.75); 
-              });
-            });
-          });
-        } makeMap();
-      </script>
+      <div money-by-state money="viewModel.moneyByState"></div>
     </div>
   </div>
-  <div class="row mods" style="text-align:center;">
-    <h3>NEED HELP GETTING STARTED?</h3>
-    <p>Campaign finance is complicated. Here are some additional resources that could help you get up to speed</p>
-    <div class="col-md-6" style="background: #eee; border: solid 1px #ccc; padding:25px 5px;">
-      <h4>FAQ</h4>
-      <p>Browse common questions with answers</p>
-    </div>
-    <div class="col-md-6" style="background: #eee; border: solid 1px #ccc; padding:25px 5px;">
-      <h4>Contact Us</h4>
-      <p>If you need assistance, drop us a line. We'd love to hear from you.</p>
-    </div>
-  </div>
-<br><br>
 </div>
 
+<div class="container">
+  <div class="row section">
+    <div class="col-md-12">
+      <h3>Need help getting started?</h3>
+    <p>Campaign finance is complicated. Here are some additional resources that could help you get up to speed</p><br>
+    </div>
+  </div>
+  <div class="row mods">
+    <div class="col-md-6">
+      <a href="#faq">
+        <span class="h3">FAQ</span>
+        <span>Browse common questions with answers</span>
+      </a>
+    </div>
+    <div class="col-md-6">
+      <a href="#contact">
+        <span class="h3">Contact Us</span>
+        <span>If you need assistance, drop us a line. We'd love to hear from you.</span>
+      </a>
+    </div>
+  </div> 
+</div>
 
 
 <!-- <div class="container home">
