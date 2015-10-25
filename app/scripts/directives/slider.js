@@ -68,7 +68,7 @@
         }
         var inData = scope.fundingExpenditures.data;
 
-        var margin = {top: 10, right: 10, bottom: 100, left: 100},
+        var margin = {top: 20, right: 10, bottom: 100, left: 100},
         margin2 = {top: 430, right: 10, bottom: 20, left: 100},
         width = 750 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom,

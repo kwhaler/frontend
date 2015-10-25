@@ -34,6 +34,9 @@
     }).when('/contact', {
       templateUrl: 'views/contact.html',
       controller: 'ContactCtrl'
+    }).when('/acquisition-costs', {
+      templateUrl: 'views/acquisition-costs.html',
+      controller: 'AcquisitionCostsCtrl'
     }).otherwise({
       redirectTo: '/'
     });

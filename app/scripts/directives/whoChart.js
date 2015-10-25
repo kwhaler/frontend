@@ -9,9 +9,9 @@
                     '<div ng-style="getStyle()"'+
                          'class="funding-icon" ng-class="icon()"></div>' +
                   '</div>' +
-                  '<div>' +
-                    '<p class="h3 text-center"> {{ label() }} </p>' +
-                    '<p class="h4 text-center"> {{ getamount() | currencyFormat }} </p>' +
+                  '<div style="text-align:center">' +
+                    '<p> <span ng-class="icon()"></span> {{ label() }} </p>' +
+                    '<p> {{ getamount() | currencyFormat }} </p>' +
                   '</div>' +
                 '</div>',
       replace: true,
@@ -54,15 +54,27 @@
         }
         $scope.getStyle = function() {
           var sz = normalize($scope.giver);
-          var margin = (100 - sz) / 2;
+          var margin = (100 - sz);
           return {
-            width: sz + '%',
+            width: 100 + '%',
             height: sz + '%',
             position: 'relative',
             top: margin + '%',
-            left: margin + '%'
+            // left: margin + '%',
+            bottom: 15
           }
         }
+        // $scope.getStyle = function() {
+        //   var sz = normalize($scope.giver);
+        //   var margin = (100 - sz) / 2;
+        //   return {
+        //     width: sz + '%',
+        //     height: sz + '%',
+        //     position: 'relative',
+        //     top: margin + '%',
+        //     left: margin + '%'
+        //   }
+        // }
       }
     }
   })

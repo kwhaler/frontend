@@ -1,53 +1,54 @@
-<div class="container">
+<div class="container campaign-detail">
   <div class="row mods">
     <h1>{{viewModel.campaign.candidate_name}}</h1>
     <h4>{{viewModel.campaign.race}}</h4><br>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-body">
-          <span class="h3">$295.4m</span>
+          <span class="h3">{{viewModel.campaign.total | currencyFormat}}</span>
           <span>Raised</span>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-body">
-          <span class="h3">$24</span>
+          <span class="h3">{{viewModel.campaign.total | currencyFormat}}</span>
           <span>Spent</span>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-body">
-          <span class="h3">$249</span>
-          <span>Voter Acquisition</span>
+          <span class="h3">{{viewModel.campaign.grassroots | percentage:1 }}</span>
+          <span>Grassroots</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <span class="h3">{{viewModel.campaign.instate | percentage:1 }}</span>
+          <span>Instate</span>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h3>Who is giving? <small>(who are the donors?)</small></h3>
+      <h3>Who is giving?</h3>
       <p>This visualization is calculated by total dollars, not total people.</p>
-      <div id="who-is-giving"></div>
-      <script type="text/javascript">
-      function drawBarChart() {
-        var svg = dimple.newSvg("#who-is-giving", 960, 400);
-        d3.tsv("/data/fpo-oregon-data.tsv", function (data) {
-          var myChart = new dimple.chart(svg, data);
-          myChart.setBounds(60, 30, 810, 305)
-          var x = myChart.addCategoryAxis("x", "Donor");
-        myChart.addMeasureAxis("y", "Amount");
-        myChart.addSeries(null, dimple.plot.bar);
-        myChart.draw();
-        });
-      } 
-      drawBarChart();
-      </script>  
-      <p>[ detail view ]</p>
+      <div who-chart money="viewModel.financialSummary.contributions"
+                     donors="viewModel.financialSummary.donors"></div>
       <p><small>( disclaimer about why grass roots are not here )</small></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>What are they spending money on?</h3>
+      <p>This visualization is calculated by total dollars, not total people.</p>
+      <div spending-chart money="viewModel.financialSummary.expenditures"></div>
     </div>
   </div>
   <div class="row">
@@ -78,27 +79,26 @@
     </style>
     <div id="chart"></div>
     <script>
-      // function drawSankey() {
 
-        var units = "Widgets";
+    var units = "Widgets";
 
-        var margin = {top: 10, right: 10, bottom: 10, left: 10},
-        width = 1000 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+    var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 1000 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
-      var formatNumber = d3.format(",.0f"),    // zero decimal places
-      format = function(d) { return formatNumber(d) + " " + units; },
-      color = d3.scale.category20();
+    var formatNumber = d3.format(",.0f"),    // zero decimal places
+    format = function(d) { return formatNumber(d) + " " + units; },
+    color = d3.scale.category20();
 
-      // append the svg canvas to the page
-      var svg = d3.select("#chart").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", 
-        "translate(" + margin.left + "," + margin.top + ")");
+    // append the svg canvas to the page
+    var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", 
+      "translate(" + margin.left + "," + margin.top + ")");
 
-      // Set the sankey diagram properties
+    // Set the sankey diagram properties
     var sankey = d3.sankey()
     .nodeWidth(36)
     .nodePadding(40)
@@ -174,10 +174,8 @@
           ) + ")");
       sankey.relayout();
       link.attr("d", path);
-    }
+      }
     });
-    // }  drawSankey();
-
     </script>
   </div>
   <div class="row">
@@ -201,8 +199,9 @@
           myChart.draw();
         });
       }
-      drawLineChart();
+      // drawLineChart();
       </script>
+      <div data-slider-chart funding-expenditures="viewModel.fundingExpenditures" ></div>
     </div>
   </div>
   <div class="row">
@@ -232,8 +231,8 @@
 
 
 
-
-<!-- <div class="container campaign-detail">
+<!-- 
+<div class="container campaign-detail">
   <div class="col-md-9 col-md-offset-1">
 
   <div class="row detail-header">
@@ -279,18 +278,18 @@
         </div>
       </div>
     </div>
-  </div> -->
-  <!--REMOVED THIS FOR BETA.  WILL ADD A BOOTSTRAP MODAL WITH CANDIDATE INFO FOR FUTURE VERSIONS
+  </div> 
+  
   <div class="row">
     <div class="col-md-6">
       <h3>Official Campaign Contact</h3>
       <h3><a href="http://{{viewModel.campaign.website}}">{{viewModel.campaign.website}}</a></h3>
       <h3>{{viewModel.campaign.phone}}</h3>
-      =======social-tags size="65" overlap="false"/ ================
+      
     </div>
   </div>
--->
-<!-- 
+
+
 <div class="row">
   <div class="col-xs-5 col-xs-offset-6 grassroots-fact">
     <h4>Did you know the statewide average for grassroots funding is 13%?</h4>

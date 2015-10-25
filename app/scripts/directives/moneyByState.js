@@ -11,12 +11,26 @@
 
       },
       link: function(scope, element) {
-        var width = 960;
-        var	height = 600;
+        var margin = {top: 30, right: 10, bottom: 30, left: 10}, 
+            width = parseInt(d3.select(element[0]).style('width'), 10),
+            width = width - margin.left - margin.right,
+            height = 400,
+            percent = d3.format('%');
+
+        var x = d3.scale.linear()
+            .range([0, width])
+            .domain([0, .4]);
+
+        var y = d3.scale.ordinal();
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .tickFormat(percent);
 
         var svg = d3.select(element[0]).append("svg")
           .attr("width", width)
           .attr("height", height);
+
         var group = svg.append("g").attr('transform', 'scale(.75)');
 
         var path = d3.geo.path();
@@ -92,8 +106,41 @@
               }
             });
           };
+
+            // d3.select(window).on('resize', resize); 
+
+            // function resize() {
+            //     // update width
+            //     width = parseInt(d3.select(element[0]).style('width'), 10);
+            //     width = width - margin.left - margin.right;
+
+            //     // resize the chart
+            //     x.range([0, width]);
+            //     d3.select(svg.node().parentNode)
+            //         .style('height', (y.rangeExtent()[1] + margin.top + margin.bottom) + 'px')
+            //         .style('width', (width + margin.left + margin.right) + 'px');
+
+            //     svg.selectAll('path.background')
+            //         .attr('width', width);
+
+            //     svg.selectAll('path.percent')
+            //         .attr('width', function(d) { return x(d.percent); });
+
+            //     // update median ticks
+            //     var median = d3.median(svg.selectAll('.bar').data(), 
+            //         function(d) { return d.percent; });
+
+            //     svg.selectAll('line.median')
+            //         .attr('x1', x(median))
+            //         .attr('x2', x(median));
+
+
+            //     // update axes
+            //     svg.select('.x.axis.top').call(xAxis.orient('top'));
+            //     svg.select('.x.axis.bottom').call(xAxis.orient('bottom'));
+
+            // }
       }
     };
   });
-
 }).call(this);
